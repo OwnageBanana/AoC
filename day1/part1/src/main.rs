@@ -20,10 +20,10 @@ fn main() {
             Err(e) => panic!("err reading file {}", e),
         };
         if cur > prev {
-            println!("{} increased", cur);
+            // println!("{} increased", cur);
             count += 1;
         } else {
-            println!("{} decreased", cur);
+            // println!("{} decreased", cur);
         }
         prev = cur;
     }
