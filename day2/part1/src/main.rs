@@ -1,5 +1,5 @@
 use core::fmt;
-use std::io::{BufRead, BufReader, Read};
+use std::io::{BufRead, BufReader};
 use std::{env, fs};
 
 // we see a pattern emerge
@@ -8,18 +8,18 @@ fn main() {
 
     assert!(args.len() > 1, "please provide a file path to read");
 
-    let Buffer: BufReader<fs::File> = match fs::File::open(&args[1]) {
+    let buffer: BufReader<fs::File> = match fs::File::open(&args[1]) {
         Ok(file) => BufReader::new(file),
         Err(e) => panic!("err reading file {}", e),
     };
     // this time we construct a position
     let mut pos: Position = Position::new();
-    for line in Buffer.lines() {
+    for line in buffer.lines() {
         let vector: (Command, u16) = match line {
             Ok(command) => parse(&command),
             Err(e) => panic!("error reading line from buffer {}", e),
         };
-        pos.addVector(vector);
+        pos.add_vector(vector);
     }
     println!("the final values are {}", pos);
 }
