@@ -56,7 +56,7 @@ impl Position {
             horizontal: 0,
         }
     }
-    fn addVector(&mut self, vector: (Command, u16)) {
+    fn add_vector(&mut self, vector: (Command, u16)) {
         match vector.0 {
             Command::Forward => self.horizontal += vector.1,
             Command::Down => self.depth += vector.1,
